@@ -1,5 +1,6 @@
 const Router = require('koa-router');
 const router = new Router();
+const HttpException = require('../../core/http-exception');
 
 router.post('/v1/book/latest', (ctx, next) => {
 	const path = ctx.params;
@@ -11,7 +12,10 @@ router.post('/v1/book/latest', (ctx, next) => {
 		key: 'book'
 	}
 
-	throw new Error('为什么还是报错error');
+	const error = new HttpException('为什么还是报错error', 10001, 400);
+
+	error.requestUrl = `${ctx.method} ${ctx.path}`
+	throw error;
 });
 
 module.exports = router;
