@@ -11,14 +11,18 @@ const catchError = async (ctx, next) => {
         error_code: error.errorCode,
         request: error.requestUrl
       }
-      ctx.status = error.code;
+      console.log(error.code);
+
+      // ctx.status = error.code;
+      ctx.status = 500;
+
     } else { // 未知异常
       ctx.body = {
         msg: "we got a mistake.",
         error_code: 999,
         request: `${ctx.method} ${ctx.path}`
       }
-
+      console.log('error', error);
       ctx.status = 500;
     }
   }

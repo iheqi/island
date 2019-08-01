@@ -14,7 +14,7 @@ class InitManager {
       }
     }
     
-    requireDirectory(module, '../api', { visit: whenLoadModule });
+    requireDirectory(module, '../app/api', { visit: whenLoadModule });
   }
 }
 
