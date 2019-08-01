@@ -5,6 +5,7 @@ class InitManager {
   static initCore(app) {
     InitManager.app = app;
     InitManager.initLoadRouters();
+    InitManager.loadConfig();
   }
 
   static initLoadRouters() {
@@ -15,6 +16,12 @@ class InitManager {
     }
     
     requireDirectory(module, '../app/api', { visit: whenLoadModule });
+  }
+
+  static loadConfig(path = '') {
+    const configPath = path || process.cwd() + '/config/config.js';
+    const config = require(configPath);
+    global.config = config;
   }
 }
 
