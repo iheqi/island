@@ -8,8 +8,8 @@ require('./app/models/user');
 const app = new Koa();
 
 app.use(catchError);
-InitManager.initCore(app);
 app.use(parser());
+InitManager.initCore(app);
 console.log('fuck');
 
 app.listen(3000);
