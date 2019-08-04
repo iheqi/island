@@ -1,5 +1,4 @@
 const Router = require('koa-router');
-const bcrypt = require('bcryptjs')
 
 const { RegisterValidator } = require('../../validators/validator');
 const { User } = require('../../models/user');
@@ -10,13 +9,12 @@ const router = new Router({
 
 router.post('/register', async (ctx) => {
   const v = await new RegisterValidator().validate(ctx);
-  const salt = bcrypt.genSaltSync(10); // 数字可以理解为破解难度
-  const psw = bcrypt.hashSync(v.get('body.password1'), salt);
+
 
   const user = {
     nickname: v.get('body.nickname'),
     email: v.get('body.email'),
-    password: psw
+    password: v.get('body.password2')
   }
 
   // console.log(user);
