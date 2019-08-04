@@ -1,5 +1,6 @@
 const { LinValidator, Rule } = require('../../core/lin-validator-v2');
 const { User } = require('../models/user');
+const { LoginType } = require('../lib/enum');
 class PositiveIntegerValidator extends LinValidator {
   constructor() {
       super();
@@ -36,7 +37,7 @@ class RegisterValidator extends LinValidator {
     ];
   }
 
-  validatePassword(vals) {
+  validatePassword(vals) { // 自定义的校验
     if (vals.body.password1 !== vals.body.password2) {
       throw new Error('两个密码必须相同');
     };
@@ -55,7 +56,38 @@ class RegisterValidator extends LinValidator {
   }
 }
 
+class TokenValidator extends LinValidator {
+  constructor() {
+    super();
+    this.account = [
+      new Rule('isLength', '不符合帐号规则', {
+        min: 4,
+        max: 32
+      })
+    ];
+
+    this.secret = [ // 密码可以不传，如你在微信中打开小程序，那微信这个母体已经验证过你了，就只需要传送帐号即可。
+      new Rule('isOptional'),
+      new Rule('isLength', {
+        min: 6,
+        max: 128
+      })
+    ]; 
+  }
+
+  validateLoginType(vals) {
+    if (!vals.body.type) {
+      throw new Error('type是必须参数');
+    }
+
+    if (!LoginType.isThisType(vals.body.type)) {
+      throw new Error('type参数不合法');
+    }
+  }
+}
+
 module.exports = {
   PositiveIntegerValidator,
-  RegisterValidator
+  RegisterValidator,
+  TokenValidator
 };
