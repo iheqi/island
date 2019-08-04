@@ -68,7 +68,7 @@ class TokenValidator extends LinValidator {
 
     this.secret = [ // 密码可以不传，如你在微信中打开小程序，那微信这个母体已经验证过你了，就只需要传送帐号即可。
       new Rule('isOptional'),
-      new Rule('isLength', {
+      new Rule('isLength', '最小6个字符',{
         min: 6,
         max: 128
       })
