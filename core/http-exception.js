@@ -15,7 +15,17 @@ class ParameterException extends HttpException {
   } 
 }
 
+class Success extends HttpException { // 把成功也作为一个error抛出，这不太合理吧？
+  constructor(msg, errorCode) {
+    super();
+    this.code = 201;
+    this.msg = msg || 'ok';
+    this.errorCode = errorCode || 0;
+  }
+}
+
 module.exports = {
   HttpException,
-  ParameterException
+  ParameterException,
+  Success
 };
