@@ -17,3 +17,7 @@ User.init({ // id会自动生成
   sequelize, 
   tableName: 'user' // 表名称
 });
+
+module.exports = {
+  User
+}

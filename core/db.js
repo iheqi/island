@@ -20,7 +20,7 @@ const sequelize = new Sequelize(dbName, user, password, {
   }
 });
 
-sequelize.sync({ force: true }); // 设置为true会删除并重建表
+sequelize.sync({ force: false }); // 通过 sync 方法同步数据结构，设置为true会删除并重建表
 
 module.exports = {
   sequelize
