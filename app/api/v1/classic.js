@@ -1,10 +1,16 @@
 const Router = require('koa-router');
-const router = new Router();
+const { Auth } =  require('../../../middlewares/auth');
+const { PositiveIntegerValidator } = require('../../validators/validator');
 
-router.get('/v1/classic/latest', (ctx, next) => {
-	ctx.body = {
-		key: 'classic'
-	}
+const router = new Router({
+	prefix: '/v1/classic'
+});
+
+
+router.get('/latest', new Auth().m, (ctx, next) => {
+	// ctx.body = {
+	// 	key: 'classic'
+	// }
 });
 
 module.exports = router;
