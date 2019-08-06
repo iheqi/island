@@ -44,10 +44,10 @@ const findMembers = function (instance, {
 const generateToken = function (uid, scope) {
     const secretKey = global.config.security.secretKey
     const expiresIn = global.config.security.expiresIn
-    const token = jwt.sign({
+    const token = jwt.sign({ // 1 自定义数据 
         uid,
         scope
-    }, secretKey, {
+    }, secretKey, { // 3 配置
         expiresIn: expiresIn
     })
     return token
