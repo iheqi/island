@@ -8,9 +8,7 @@ const router = new Router({
 
 
 router.get('/latest', new Auth().m, (ctx, next) => {
-	// ctx.body = {
-	// 	key: 'classic'
-	// }
+	ctx.body = ctx.auth.uid;
 });
 
 module.exports = router;
