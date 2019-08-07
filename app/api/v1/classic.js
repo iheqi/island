@@ -7,7 +7,7 @@ const router = new Router({
 });
 
 
-router.get('/latest', new Auth().m, (ctx, next) => {
+router.get('/latest', new Auth(9).m, (ctx, next) => {
 	ctx.body = ctx.auth.uid;
 });
 
