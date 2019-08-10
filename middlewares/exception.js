@@ -9,7 +9,7 @@ const catchError = async (ctx, next) => {
         error_code: error.errorCode,
         request: error.requestUrl
       }
-
+      console.log('这里没捕获到异常并返回？？？');
       // ctx.status = error.code;
       ctx.status = 500;
 
@@ -21,9 +21,11 @@ const catchError = async (ctx, next) => {
       }
       ctx.status = 500;
     }
-    if (global.config.environment === 'dev') {
-      console.log('error', error);
-    }
+    // if (global.config.environment === 'dev') {
+    //   console.log('error', error);
+    // }
+    console.log('这里没捕获到异常并返回？？？');
+
   }
 }
 
