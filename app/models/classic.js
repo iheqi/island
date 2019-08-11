@@ -42,7 +42,7 @@ Music.init(musicFields, {
   tableName: 'music'
 });
 
-Module.exports = {
+module.exports = {
   Movie,
   Music,
   Sentence
