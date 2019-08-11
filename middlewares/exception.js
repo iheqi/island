@@ -24,8 +24,6 @@ const catchError = async (ctx, next) => {
     // if (global.config.environment === 'dev') {
     //   console.log('error', error);
     // }
-    console.log('这里没捕获到异常并返回？？？');
-
   }
 }
 
