@@ -18,11 +18,8 @@ router.post('/register', async (ctx) => {
     password: v.get('body.password2')
   }
 
-  // console.log(user);
   const res = await User.create(user);
-  // console.log(res);
   ctx.body = 'success';
-  // success();
 });
 
 module.exports = router;
